@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer base {
+}
+@layer components {
+  /*  Navbar*/
+  #navbar .menu li a {
+    background-color: transparent;
+    @apply px-6;
+    @apply rounded-none;
+  }
+  #navbar .menu li:last-child a {
+  }
+  #navbar .menu .sub-menu {
+    @apply rounded-none;
+  }
+  .btn {
+    @apply rounded-full;
+    @apply capitalize;
+    @apply px-8;
+    @apply py-4;
+    @apply font-medium;
+    font-family: "Poppins", sans-serif;
+    height: auto;
+    color: currentColor;
+  }
+  .btn-with-icon {
+    @apply px-8;
+    @apply py-4;
+    @apply gap-8;
+  }
+  .btn-icon-only{
+    @apply p-6;
+  }
+  .btn-primary {
+    color: #ffffff;
+  }
+  .btn-secondary {
+    color: #ffffff;
+  }
+  .btn-white {
+    background-color: #ffffff;
+    border: none;
+  }
+  .btn-white:hover {
+    background-color: #ffffff;
+  }
+  .btn-white-outline {
+    background-color: transparent;
+    border-color: #ffffff;
+    color: #ffffff;
+  }
+  .custom-theme-button{
+    @apply border-secondary;
+    color: #000000!important;
+  }
+  .custom-theme-button:hover{
+    @apply border-secondary;
+    @apply bg-secondary;
+    color: #ffffff!important;
+  }
+  .design-border-left{
+    @apply xl:border-l-[1px];
+    @apply xl:border-[#D4D4D4];
+  }
+  .footer-links h6,
+  li a {
+    @apply text-white;
+  }
+}
+@layer utilities {
+}

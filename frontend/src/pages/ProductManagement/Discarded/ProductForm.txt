@@ -1,0 +1,161 @@
+// React component for the form
+import React, { useState, useEffect } from "react";
+import { TextField, Button, Select, MenuItem } from "@mui/material";
+import axios from "axios";
+
+const ProductForm = () => {
+  // Initialize state for form inputs and product list
+  const [batchNumber, setBatchNumber] = useState("");
+  const [productName, setProductName] = useState("");
+  const [quantityProduced, setQuantityProduced] = useState("");
+  const [productionDate, setProductionDate] = useState("");
+  const [expirationDate, setExpirationDate] = useState("");
+  const [salesPrice, setSalesPrice] = useState("");
+  const [productionCost, setProductionCost] = useState({
+    rawMaterials: "",
+    labor: "",
+    packing: "",
+    other: "",
+  });
+  const [products, setProducts] = useState([]);
+
+  // Fetch list of products from database on mount
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/admin-portal/production-management")
+      .then((response) => {
+        setProducts(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  // Handler for submitting the form
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    // Create new product object from form inputs
+    const newProduct = {
+      batchNumber,
+      productName,
+      quantityProduced,
+      productionDate,
+      expirationDate,
+      salesPrice,
+      productionCost,
+    };
+
+    // Send POST request to server to add new product to database
+    axios
+      .post("http://localhost:3000/admin-portal/production-management", newProduct)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <TextField
+        label="Batch Number"
+        value={batchNumber}
+        onChange={(event) => setBatchNumber(event.target.value)}
+      />
+      <TextField
+        label="Product Name"
+        value={productName}
+        onChange={(event) => setProductName(event.target.value)}
+      />
+      <TextField
+        label="Quantity Produced"
+        value={quantityProduced}
+        onChange={(event) => setQuantityProduced(event.target.value)}
+      />
+      <TextField
+        label="Production Date"
+        type="date"
+        value={productionDate}
+        onChange={(event) => setProductionDate(event.target.value)}
+        InputLabelProps={{
+          shrink: true,
+        }}
+      />
+      <TextField
+        label="Expiration Date"
+        type="date"
+        value={expirationDate}
+        onChange={(event) => setExpirationDate(event.target.value)}
+        InputLabelProps={{
+          shrink: true,
+        }}
+      />
+      <TextField
+        label="Sales Price"
+        value={salesPrice}
+        onChange={(event) => setSalesPrice(event.target.value)}
+      />
+      <TextField
+        label="Raw Materials"
+        value={productionCost.rawMaterials}
+        onChange={(event) =>
+          setProductionCost({
+            ...productionCost,
+            rawMaterials: event.target.value,
+          })
+        }
+      />
+      <TextField
+        label="Labor"
+        value={productionCost.labor}
+        onChange={(event) =>
+          setProductionCost({
+            ...productionCost,
+            labor: event.target.value,
+          })
+        }
+      />
+      <TextField
+        label="Packing"
+        value={productionCost.packing}
+        onChange={(event) =>
+          setProductionCost({
+            ...productionCost,
+            packing: event.target.value,
+          })
+        }
+        />
+        <TextField
+        label="Other"
+        value={productionCost.other}
+        onChange={(event) =>
+          setProductionCost({
+            ...productionCost,
+            other: event.target.value,
+          })
+        }
+      />
+      <Select
+        label="Product"
+        value={productName}
+        onChange={(event) => setProductName(event.target.value)}
+      >
+        {products.map((product) => (
+          <MenuItem key={product._id} value={product.productName}>
+            {product.productName}
+          </MenuItem>
+        ))}
+      </Select>
+      <Button type="submit" variant="contained">
+        Add Product
+      </Button>
+    </form>
+
+);
+};
+
+
+
+export default ProductForm;

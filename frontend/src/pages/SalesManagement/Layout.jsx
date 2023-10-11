@@ -1,0 +1,16 @@
+import React from 'react';
+import SalesDisplay from './SalesDisplay';
+import styled from 'styled-components';
+
+const LayoutContainer = styled.div`
+  flex: 5;
+`;
+const Layout = () => {
+  return (
+    <LayoutContainer className="flex flex-col flex-5 gap-5 h-full m-[20px] mt-0 ml-[10px]">
+      <SalesDisplay />
+    </LayoutContainer>
+  );
+};
+
+export default Layout;

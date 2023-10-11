@@ -1,0 +1,16 @@
+@import url(//db.onlinewebfonts.com/c/860c3ec7bbc5da3e97233ccecafe512e?family=Circular+Std+Book);
+body{
+    margin: 0;
+    padding: 0;
+    color: black;
+    background-color: #D9D9D9;
+    height: screen;
+}
+:root{
+    font-family: "Circular Std Book", sans-serif
+}
+html, body{min-height:100%;
+    overflow: hidden;
+}
+body{height:100vh;}
+
