@@ -34,26 +34,8 @@ const Login = () => {
       case 'staffManager':
         navigate('/staff-management');
         break;
-      case 'productManager':
-        navigate('/product-management');
-        break;
-      case 'stockManager':
-        navigate('/stock-management');
-        break;
-      case 'vehicleOfficer':
-        navigate('/vehicle-management');
-        break;
-      case 'salesManager':
-        navigate('/sales-management');
-        break;
-      case 'cropManager':
-        navigate('/crops-management');
-        break;
-      case 'technicalManager':
-        navigate('/machine-management');
-        break;
-      case 'payrollManager':
-        navigate('/salary-management');
+      case 'transportManager':
+        navigate('/transport-management');
         break;
       case 'sysAdmin':
         navigate('/home');
