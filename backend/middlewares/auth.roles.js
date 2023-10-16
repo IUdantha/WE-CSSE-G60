@@ -28,48 +28,11 @@ function staffManagement (req, res, next) {
   next()
 }
 
-function productManagement (req, res, next) {
-  if (req.user.role !== 'sysAdmin' && req.user.role !== 'productManager') {
+function transportManagement (req, res, next) {
+  if (req.user.role !== 'sysAdmin' && req.user.role !== 'transportManager') {
     console.log(req.user.role)
     return res.status(403).send({ message: 'You do not have permissions!' })
   }
   next()
 }
-
-function vehicleManagement (req, res, next) {
-  if (req.user.role !== 'sysAdmin' && req.user.role !== 'vehicleOfficer') {
-    console.log(req.user.role)
-    return res.status(403).send({ message: 'You do not have permissions!' })
-  }
-  next()
-}
-
-function stockManagement (req, res, next) {
-  if (req.user.role !== 'sysAdmin' && req.user.role !== 'stockManager') {
-    console.log(req.user.role)
-    return res.status(403).send({ message: 'You do not have permissions!' })
-  }
-  next()
-}
-function salesManagement (req, res, next) {
-  if (req.user.role !== 'sysAdmin' && req.user.role !== 'salesManager') {
-    console.log(req.user.role)
-    return res.status(403).send({ message: 'You do not have permissions!' })
-  }
-  next()
-}
-function technicalManagement (req, res, next) {
-  if (req.user.role !== 'sysAdmin' && req.user.role !== 'technicalManager') {
-    console.log(req.user.role)
-    return res.status(403).send({ message: 'You do not have permissions!' })
-  }
-  next()
-}
-function salaryManagement (req, res, next) {
-  if (req.user.role !== 'sysAdmin' && req.user.role !== 'payrollManager') {
-    console.log(req.user.role)
-    return res.status(403).send({ message: 'You do not have permissions!' })
-  }
-  next()
-}
-module.exports = { auth, sysAdmin, staffManagement, productManagement, vehicleManagement, stockManagement, salesManagement, technicalManagement, salaryManagement }
+module.exports = { auth, sysAdmin, staffManagement, transportManagement }
