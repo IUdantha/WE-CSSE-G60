@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Header from '../../components/Header';
-import ViewInspector from '../../components/SalaryManagement/ViewInspector.jsx';
+import ViewInspector from '../../components/TransportManagement/ViewInspector.jsx';
 
 const TransportManagementLayout = styled.div`
   display: flex;

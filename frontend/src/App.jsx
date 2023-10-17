@@ -7,12 +7,12 @@ import StaffManagement from './pages/StaffManagement/StaffManagement';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material';
 import { theme } from './theme';
-import AddIncome from './pages/SalaryManagement/AddIncome';
-import EditIncomePage from './pages/SalaryManagement/EditIncomePage';
-import ViewIncomePage from './pages/SalaryManagement/ViewIncomePage';
-import AddInspector from './pages/SalaryManagement/AddInspector';
-import EditInspector from './pages/SalaryManagement/EditInspector';
-import ViewInspector from './pages/SalaryManagement/ViewInspector';
+import AddIncome from './pages/TransportManagement/AddIncome';
+import EditIncomePage from './pages/TransportManagement/EditIncomePage';
+import ViewIncomePage from './pages/TransportManagement/ViewIncomePage';
+import AddInspector from './pages/TransportManagement/AddInspector';
+import EditInspector from './pages/TransportManagement/EditInspector';
+import ViewInspector from './pages/TransportManagement/ViewInspector';
 
 import Login from './pages/Login/Login';
 function App() {

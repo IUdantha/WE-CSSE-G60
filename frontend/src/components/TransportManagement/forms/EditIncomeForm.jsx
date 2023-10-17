@@ -72,7 +72,7 @@ const EditIncomeForm = () => {
         }
       });
 
-      setSalary(result.data);
+      setIncome(result.data);
 
       formik.setValues({
         routeId: result.data.incomeRouteID,

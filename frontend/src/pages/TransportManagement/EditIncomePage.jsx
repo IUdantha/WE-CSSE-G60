@@ -1,17 +1,18 @@
 import styled from 'styled-components';
 import Header from '../../components/Header';
-import AddInspector from '../../components/SalaryManagement/AddInspector.jsx';
+import EditIncome from '../../components/TransportManagement/EditIncome.jsx';
 
 const TransportManagementLayout = styled.div`
   display: flex;
   flex-direction: column;
 `;
-const AddInspectors = () => {
+
+const EditIncomePage = () => {
   return (
     <TransportManagementLayout>
       <Header />
-      <AddInspector />
+      <EditIncome />
     </TransportManagementLayout>
   );
 };
-export default AddInspectors;
+export default EditIncomePage;
