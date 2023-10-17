@@ -46,8 +46,9 @@ function App() {
           {/* Display the StaffManagement component for the '/staff-management' path */}
           <Route path="/staff-management/add-staff-member" element={<AddStaff />} />{' '}
           {/* Display the AddStaff component for the '/staff-management/add-staff-member' path */}
-          <Route path="staff-management/update-member" element={<UpdateStaff />} />{' '}
-          git config user.name       {/* Display the UpdateStaff component for the '/staff-management/update-member' path */}
+          <Route path="staff-management/update-member" element={<UpdateStaff />} />
+          {/* Display the UpdateStaff component for the '/staff-management/update-member' path */}
+          {/* --------------------------------------------------------- */}
           {/* Transport Management */}
           <Route path="/transport-management" element={<ViewIncomePage />} />{' '}
           {/* Display the ViewIncomePage component for the '/transport-management' path */}
