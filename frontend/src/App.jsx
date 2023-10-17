@@ -1,5 +1,6 @@
-import './App.css';
-import Home from './pages/Home';
+// Import necessary dependencies and components
+import './App.css'; // Import styles for the app
+import Home from './pages/Home'; // Import the Home component
 
 import AddStaff from './pages/StaffManagement/AddStaff';
 import UpdateStaff from './pages/StaffManagement/UpdateStaff';
@@ -14,12 +15,20 @@ import AddInspector from './pages/TransportManagement/AddInspector';
 import EditInspector from './pages/TransportManagement/EditInspector';
 import ViewInspector from './pages/TransportManagement/ViewInspector';
 
-import Login from './pages/Login/Login';
+import Login from './pages/Login/Login'; // Import the Login component
+
+// Define the main App component`
 function App() {
   return (
     <ThemeProvider theme={theme}>
+      {' '}
+      {/* Apply the custom theme to the app */}
       <Router>
+        {' '}
+        {/* Set up the routing with BrowserRouter */}
         <Routes>
+          {' '}
+          {/* Define the routes for the app */}
           <Route
             path="/"
             element={
@@ -27,28 +36,38 @@ function App() {
                 <Login />
               </LoggedIn>
             }
-          />
-          <Route path="/" element={<Home />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/staff-management" element={<StaffManagement />} />
-          <Route path="/staff-management/add-staff-member" element={<AddStaff />} />
+          />{' '}
+          {/* Display the Login component for the root path if a user is not logged in */}
+          <Route path="/" element={<Home />} /> {/* Display the Home component for the root path */}
+          <Route path="/home" element={<Home />} />{' '}
+          {/* Display the Home component for the '/home' path */}
+          <Route path="/staff-management" element={<StaffManagement />} />{' '}
+          {/* Display the StaffManagement component for the '/staff-management' path */}
+          <Route path="/staff-management/add-staff-member" element={<AddStaff />} />{' '}
+          {/* Display the AddStaff component for the '/staff-management/add-staff-member' path */}
           <Route path="staff-management/update-member" element={<UpdateStaff />} />
-
+          {/* Display the UpdateStaff component for the '/staff-management/update-member' path */}
+          {/* --------------------------------------------------------- */}
           {/* Transport Management */}
-          <Route path="/transport-management" element={<ViewIncomePage />} />
-          <Route path="/transport-management/add-income" element={<AddIncome />} />
-          <Route path="/transport-management/add-inspector" element={<AddInspector />} />
-          <Route path="/transport-management/inspector" element={<ViewInspector />} />
-          <Route path="/transport-management/edit-inspector/:id" element={<EditInspector />} />
-          <Route path="/transport-management/edit-income/:id" element={<EditIncomePage />} />
-
+          <Route path="/transport-management" element={<ViewIncomePage />} />{' '}
+          {/* Display the ViewIncomePage component for the '/transport-management' path */}
+          <Route path="/transport-management/add-income" element={<AddIncome />} />{' '}
+          {/* Display the AddIncome component for the '/transport-management/add-income' path */}
+          <Route path="/transport-management/add-inspector" element={<AddInspector />} />{' '}
+          {/* Display the AddInspector component for the '/transport-management/add-inspector' path */}
+          <Route path="/transport-management/inspector" element={<ViewInspector />} />{' '}
+          {/* Display the ViewInspector component for the '/transport-management/inspector' path */}
+          <Route path="/transport-management/edit-inspector/:id" element={<EditInspector />} />{' '}
+          {/* Display the EditInspector component for the '/transport-management/edit-inspector/:id' path */}
+          <Route path="/transport-management/edit-income/:id" element={<EditIncomePage />} />{' '}
+          {/* Display the EditIncomePage component for the '/transport-management/edit-income/:id' path */}
         </Routes>
       </Router>
     </ThemeProvider>
   );
 }
 
-export default App;
+export default App; // Export the App component as the default export
 
 // const LoggedOut = ({ children }) => {
 //   if (localStorage.getItem('token')) {
@@ -58,10 +77,11 @@ export default App;
 //   }
 // };
 
+// Define a component to handle the case when a user is logged in
 export const LoggedIn = ({ children }) => {
   if (localStorage.getItem('token')) {
-    return <Navigate to="/home" />;
+    return <Navigate to="/home" />; // Redirect to the Home page if the user is logged in
   } else {
-    return children;
+    return children; // Render the children components if the user is not logged in
   }
 };
