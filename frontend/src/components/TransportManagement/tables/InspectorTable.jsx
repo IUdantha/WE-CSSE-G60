@@ -210,7 +210,7 @@ const InspectorTable = () => {
 
   useEffect(() => {
     if (searchText.trim() === '') {
-      setIncrements(rows);
+      setInspectors(rows);
     } else {
       let timeoutID = setTimeout(() => {
         fetch(
@@ -266,7 +266,7 @@ const InspectorTable = () => {
       <div className="grid grid-cols-2 gap-4">
         <div>
           <TextField
-            label="Search Salary"
+            label="Search Inspector"
             value={searchText}
             onChange={handleSearch}
             sx={{ mb: 2 }}
@@ -290,7 +290,7 @@ const InspectorTable = () => {
 
       <div style={{ height: 400, width: '100%' }}>
         <DataGrid
-          rows={increments}
+          rows={inspectors}
           columns={columns}
           pageSize={5}
           rowsPerPageOptions={[5]}

@@ -298,7 +298,7 @@ const EditIncomeForm = () => {
             fullWidth
             id="expenses"
             name="expenses"
-            label="Net Salary"
+            label="Expenses"
             value={formik.values.expenses || ''}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
