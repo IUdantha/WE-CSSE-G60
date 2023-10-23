@@ -89,6 +89,20 @@ const TransportSidebar = () => {
             </StyledNavLink>
           </div>
         </SidebarOption>
+        <SidebarOption>
+          <div className="button m-4 px-4 py-2 active:text-white bg-white text-primary flex flex-row gap-2 items-center rounded-xl pl-[40px]">
+            <StyledNavLink end to="/transport-management/route">
+              View Bus Routes
+            </StyledNavLink>
+          </div>
+        </SidebarOption>
+        <SidebarOption>
+          <div className="button m-4 px-4 py-2 active:text-white bg-white text-primary flex flex-row gap-2 items-center rounded-xl pl-[40px]">
+            <StyledNavLink end to="/transport-management/add-route">
+              Add Bus Route
+            </StyledNavLink>
+          </div>
+        </SidebarOption>
       </SidebarOptions>
       <Button
         onClick={handleLogout}

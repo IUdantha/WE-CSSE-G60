@@ -17,6 +17,9 @@ import ViewInspector from './pages/TransportManagement/ViewInspector';
 import AddSchedule from './pages/TransportManagement/AddSchedule';
 import EditSchedule from './pages/TransportManagement/EditSchedule';
 import ViewSchedule from './pages/TransportManagement/ViewSchedule';
+import AddRoute from './pages/TransportManagement/AddRoute';
+import EditRoute from './pages/TransportManagement/EditRoute';
+import ViewRoute from './pages/TransportManagement/ViewRoute';
 
 import Login from './pages/Login/Login'; // Import the Login component
 
@@ -66,7 +69,6 @@ function App() {
           {/* Display the AddInspector component for the '/transport-management/add-inspector' path */}
           <Route path="/transport-management/edit-inspector/:id" element={<EditInspector />} />{' '}
           {/* Display the EditInspector component for the '/transport-management/edit-inspector/:id' path */}
-          
 
           <Route path="/transport-management/schedule" element={<ViewSchedule />} />{' '}
           {/* Display the ViewSchedule component for the '/transport-management/schedule' path */}
@@ -74,6 +76,14 @@ function App() {
           {/* Display the AddSchedule component for the '/transport-management/add-schedule' path */}
           <Route path="/transport-management/edit-schedule/:id" element={<EditSchedule />} />{' '}
           {/* Display the EditSchedule component for the '/transport-management/edit-schedule/:id' path */}
+
+          <Route path="/transport-management/route" element={<ViewRoute />} />{' '}
+          {/* Display the ViewRoute component for the '/transport-management/route' path */}
+          <Route path="/transport-management/add-route" element={<AddRoute />} />{' '}
+          {/* Display the AddRoute component for the '/transport-management/add-route' path */}
+          <Route path="/transport-management/edit-route/:id" element={<EditRoute />} />{' '}
+          {/* Display the EditRoute component for the '/transport-management/edit-route/:id' path */}
+
         </Routes>
       </Router>
     </ThemeProvider>
