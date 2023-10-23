@@ -5,9 +5,9 @@ import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
-function EditInspectorForm() {
+function EditScheduleForm() {
   const params = useParams();
-  const [inspectors, setInspectors] = useState([]);
+  const [schedules, setSchedules] = useState([]);
   const navigate = useNavigate();
 
   const id = params.id;
@@ -42,7 +42,7 @@ function EditInspectorForm() {
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios.get(
-        'http://localhost:3000/admin-portal/transport-management/inspectors/' + id,
+        'http://localhost:3000/admin-portal/transport-management/schedules/' + id,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -50,46 +50,46 @@ function EditInspectorForm() {
           }
         }
       );
-      setInspectors(result.data);
+      setSchedules(result.data);
     };
     fetchData();
   }, []);
 
   const validate = (values) => {
     const errors = {};
-    if (!values.inspectorId) {
-      errors.inspectorId = 'Required';
-    }
-    if (!values.name) {
-      errors.name = 'Required';
-    }
-    if (!values.contactNumber) {
-      errors.contactNumber = 'Required';
-    }
     if (!values.busId) {
       errors.busId = 'Required';
     }
-    if (!values.route) {
-      errors.route = 'Required';
+    if (!values.routeId) {
+      errors.routeId = 'Required';
     }
-    if (!values.salary) {
-      errors.salary = 'Required';
+    if (!values.driver) {
+      errors.driver = 'Required';
     }
-    if (!values.salStatus) {
-      errors.salStatus = 'Required';
+    if (!values.inspector) {
+      errors.inspector = 'Required';
+    }
+    if (!values.depart) {
+      errors.depart = 'Required';
+    }
+    if (!values.arrive) {
+      errors.arrive = 'Required';
+    }
+    if (!values.load) {
+      errors.load = 'Required';
     }
     return errors;
   };
 
   const formik = useFormik({
     initialValues: {
-      inspectorId: inspectors.inspectorID,
-      name: inspectors.inspectorName,
-      contactNumber: inspectors.inspectorContact,
-      busId: inspectors.busID,
-      route: inspectors.busRoute,
-      salary: inspectors.inspectorSalary,
-      salStatus: inspectors.inspectorStatus
+      busId: schedules.scheduleBusId,
+      routeId: schedules.scheduleRouteId,
+      driver: schedules.scheduleDriver,
+      inspector: schedules.scheduleInspector,
+      depart: schedules.scheduleDepart,
+      arrive: schedules.scheduleArrive,
+      load: schedules.scheduleLoad
     },
 
     enableReinitialize: true,
@@ -99,15 +99,15 @@ function EditInspectorForm() {
       (async () => {
         try {
           const res = await axios.patch(
-            'http://localhost:3000/admin-portal/transport-management/inspectors/' + id,
+            'http://localhost:3000/admin-portal/transport-management/schedules/' + id,
             {
-              inspectorID: values.inspectorId,
-              inspectorName: values.name,
-              inspectorContact: values.contactNumber,
-              busID: values.busId,
-              busRoute: values.route,
-              inspectorSalary: values.salary,
-              inspectorStatus: values.salStatus
+              scheduleBusId: values.busId,
+              scheduleRouteId: values.routeId,
+              scheduleDriver: values.driver,
+              scheduleInspector: values.inspector,
+              scheduleDepart: values.depart,
+              scheduleArrive: values.arrive,
+              scheduleLoad: values.load
             },
             {
               headers: {
@@ -119,10 +119,10 @@ function EditInspectorForm() {
 
           Swal.fire({
             icon: 'success',
-            title: 'Inspector updated successfully!'
+            title: 'Schedule updated successfully!'
           });
 
-          navigate('/transport-management/inspector');
+          navigate('/transport-management/schedule');
         } catch (error) {
           console.log(error);
           if (error.response.status === 401) {
@@ -165,60 +165,6 @@ function EditInspectorForm() {
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
           <div>
-            {formik.touched.inspectorId && formik.errors.inspectorId ? (
-              <p className="mt-1 mb-2 text-sm italic text-red-500">{formik.errors.inspectorId}</p>
-            ) : null}
-          </div>
-          <TextField
-            fullWidth
-            id="inspectorId"
-            name="inspectorId"
-            label="Inspector ID"
-            value={formik.values.inspectorId || ''}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            error={formik.touched.inspectorId && Boolean(formik.errors.inspectorId)}
-          />
-        </Grid>
-
-        <Grid item xs={12} sm={6}>
-          <div>
-            {formik.touched.name && formik.errors.name ? (
-              <p className="mt-1 mb-2 text-sm italic text-red-500">{formik.errors.name}</p>
-            ) : null}
-          </div>
-          <TextField
-            fullWidth
-            id="name"
-            name="name"
-            label="Inspector Name"
-            value={formik.values.name || ''}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            error={formik.touched.name && Boolean(formik.errors.name)}
-          />
-        </Grid>
-
-        <Grid item xs={12} sm={6}>
-          <div>
-            {formik.touched.contactNumber && formik.errors.contactNumber ? (
-              <p className="mt-1 mb-2 text-sm italic text-red-500">{formik.errors.contactNumber}</p>
-            ) : null}
-          </div>
-          <TextField
-            fullWidth
-            id="contactNumber"
-            name="contactNumber"
-            label="Job Title"
-            value={formik.values.contactNumber || ''}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            error={formik.touched.contactNumber && Boolean(formik.errors.contactNumber)}
-          />
-        </Grid>
-
-        <Grid item xs={12} sm={6}>
-          <div>
             {formik.touched.busId && formik.errors.busId ? (
               <p className="mt-1 mb-2 text-sm italic text-red-500">{formik.errors.busId}</p>
             ) : null}
@@ -237,70 +183,111 @@ function EditInspectorForm() {
 
         <Grid item xs={12} sm={6}>
           <div>
-            {formik.touched.route && formik.errors.route ? (
-              <p className="mt-1 mb-2 text-sm italic text-red-500">{formik.errors.route}</p>
+            {formik.touched.routeId && formik.errors.routeId ? (
+              <p className="mt-1 mb-2 text-sm italic text-red-500">{formik.errors.routeId}</p>
             ) : null}
           </div>
           <TextField
             fullWidth
-            id="route"
-            name="route"
-            label="Bus Route"
-            value={formik.values.route || ''}
+            id="routeId"
+            name="routeId"
+            label="Route ID"
+            value={formik.values.routeId || ''}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            error={formik.touched.route && Boolean(formik.errors.route)}
+            error={formik.touched.routeId && Boolean(formik.errors.routeId)}
           />
         </Grid>
 
         <Grid item xs={12} sm={6}>
           <div>
-            {formik.touched.salary && formik.errors.salary ? (
-              <p className="mt-1 mb-2 text-sm italic text-red-500">{formik.errors.salary}</p>
+            {formik.touched.driver && formik.errors.driver ? (
+              <p className="mt-1 mb-2 text-sm italic text-red-500">{formik.errors.driver}</p>
             ) : null}
           </div>
           <TextField
             fullWidth
-            id="salary"
-            name="salary"
-            label="Salary"
-            value={formik.values.salary || ''}
+            id="driver"
+            name="driver"
+            label="Driver Name"
+            value={formik.values.driver || ''}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            error={formik.touched.salary && Boolean(formik.errors.salary)}
+            error={formik.touched.driver && Boolean(formik.errors.driver)}
           />
         </Grid>
 
         <Grid item xs={12} sm={6}>
           <div>
-            {formik.touched.salStatus && formik.errors.salStatus ? (
-              <p className="mt-1 mb-2 text-sm italic text-red-500">
-                {formik.errors.salStatus}
-              </p>
+            {formik.touched.inspector && formik.errors.inspector ? (
+              <p className="mt-1 mb-2 text-sm italic text-red-500">{formik.errors.inspector}</p>
             ) : null}
           </div>
           <TextField
             fullWidth
-            select
-            id="salStatus"
-            name="salStatus"
-            label="Salary Status"
-            value={formik.values.salStatus || ''}
+            id="inspector"
+            name="inspector"
+            label="Inspector Name"
+            value={formik.values.inspector || ''}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            error={formik.touched.salStatus && Boolean(formik.errors.salStatus)}>
-            <MenuItem key="paid" value="paid">
-              Paid
-            </MenuItem>
-            <MenuItem key="unpaid" value="unpaid">
-              Unpaid
-            </MenuItem>
-            <MenuItem key="pending" value="pending">
-              Pending
-            </MenuItem>
-          </TextField>
+            error={formik.touched.inspector && Boolean(formik.errors.inspector)}
+          />
         </Grid>
 
+        <Grid item xs={12} sm={6}>
+          <div>
+            {formik.touched.depart && formik.errors.depart ? (
+              <p className="mt-1 mb-2 text-sm italic text-red-500">{formik.errors.depart}</p>
+            ) : null}
+          </div>
+          <TextField
+            fullWidth
+            id="depart"
+            name="depart"
+            label="Departure"
+            value={formik.values.depart || ''}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={formik.touched.depart && Boolean(formik.errors.depart)}
+          />
+        </Grid>
+
+        <Grid item xs={12} sm={6}>
+          <div>
+            {formik.touched.arrive && formik.errors.arrive ? (
+              <p className="mt-1 mb-2 text-sm italic text-red-500">{formik.errors.arrive}</p>
+            ) : null}
+          </div>
+          <TextField
+            fullWidth
+            id="arrive"
+            name="arrive"
+            label="Arrival"
+            value={formik.values.arrive || ''}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={formik.touched.arrive && Boolean(formik.errors.arrive)}
+          />
+        </Grid>
+
+        <Grid item xs={12} sm={6}>
+          <div>
+            {formik.touched.load && formik.errors.load ? (
+              <p className="mt-1 mb-2 text-sm italic text-red-500">{formik.errors.load}</p>
+            ) : null}
+          </div>
+          <TextField
+            fullWidth
+            id="load"
+            name="load"
+            label="Expected Load"
+            value={formik.values.load || ''}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={formik.touched.load && Boolean(formik.errors.load)}
+          />
+        </Grid>
 
         <Grid item xs={12}>
           <div className="flex justify-end">
@@ -315,4 +302,4 @@ function EditInspectorForm() {
     </form>
   );
 }
-export default EditInspectorForm;
+export default EditScheduleForm;

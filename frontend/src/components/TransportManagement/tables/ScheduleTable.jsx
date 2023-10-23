@@ -1,29 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import Swal from 'sweetalert2';
 import axios from 'axios';
-// import moment from 'moment';
 import { DataGrid } from '@mui/x-data-grid';
 import { Button, TextField } from '@mui/material';
-import { saveAs } from 'file-saver';
-import { NavLink } from 'react-router-dom';
 
 let rows = [];
 
-const IncomeTable = () => {
-  const [incomes, setIncomes] = useState([]);
-  const [inspectors, setInspectors] = useState([]);
+const ScheduleTable = () => {
+  const [schedules, setSchedules] = useState([]);
   const [searchText, setSearchText] = useState('');
   const [loading, setLoading] = useState(false);
-
   const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem('token');
     const role = localStorage.getItem('role');
-
     if (!token || token == null) {
       Swal.fire(
         {
@@ -49,13 +43,13 @@ const IncomeTable = () => {
   });
 
   const columns = [
-    { field: 'incomeRouteID', headerName: 'Route ID', width: 110 },
-    { field: 'incomeBusID', headerName: 'Bus ID', width: 170 },
-    { field: 'incomeLoad', headerName: 'Load', width: 150 },
-    { field: 'incomeDate', headerName: 'Date', width: 100 },
-    { field: 'incomeIncome', headerName: 'Income', width: 170 },
-    { field: 'incomeExpenses', headerName: 'Expenses', width: 150 },
-    { field: 'incomeProfit', headerName: 'Profit', width: 200 },
+    { field: 'scheduleBusId', headerName: 'Bus ID', width: 110 },
+    { field: 'scheduleRouteId', headerName: 'Route ID', width: 170 },
+    { field: 'scheduleDriver', headerName: 'Driver', width: 150 },
+    { field: 'scheduleInspector', headerName: 'Inspector', width: 170 },
+    { field: 'scheduleDepart', headerName: 'Departure', width: 150 },
+    { field: 'scheduleArrive', headerName: 'Arrival', width: 150 },
+    { field: 'scheduleLoad', headerName: 'Load', width: 200 },
 
     {
       field: 'actions',
@@ -81,61 +75,23 @@ const IncomeTable = () => {
 
   const fetchData = async () => {
     setLoading(true);
-    const result = await axios.get('http://localhost:3000/admin-portal/transport-management', {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('token')}`,
-        'Content-Type': 'application/json'
-      }
-    });
-    setIncomes(result.data);
-    rows = result.data;
-    setLoading(false);
-  };
-
-  const fetchInspectors = async () => {
-    setLoading(true);
-
-    try {
-      const response = await axios.get(
-        'http://localhost:3000/admin-portal/transport-management/inspector',
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
-            'Content-Type': 'application/json'
-          }
+    const result = await axios.get(
+      'http://localhost:3000/admin-portal/transport-management/schedules',
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+          'Content-Type': 'application/json'
         }
-      );
-      setInspectors(response.data);
-    } catch (error) {
-      if (error.response.status === 401) {
-        Swal.fire(
-          {
-            icon: 'warning',
-            title: 'Login Required',
-            text: error.response.data.message
-          },
-          navigate('/')
-        );
       }
-
-      if (error.response.status === 403) {
-        Swal.fire(
-          {
-            icon: 'warning',
-            title: 'Unauthorized',
-            text: error.response.data.message
-          },
-          navigate('/home')
-        );
-      }
-      console.error(error);
-    }
+    );
+    setSchedules(result.data);
+    rows = result.data;
     setLoading(false);
   };
 
   useEffect(() => {
     setLoading(true);
-    fetch('http://localhost:3000/admin-portal/transport-management', {
+    fetch('http://localhost:3000/admin-portal/transport-management/schedules', {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
         'Content-Type': 'application/json'
@@ -167,21 +123,20 @@ const IncomeTable = () => {
             navigate('/home')
           );
         }
-        console.error('Error fetching incomes:', error);
+        console.error('Error fetching schedules:', error);
       });
     setLoading(false);
     fetchData();
-    fetchInspectors();
   }, []);
 
   const handleUpdate = (id) => {
-    // redirect to update income page
-    navigate(`/transport-management/edit-income/${id}`);
+    // redirect to update schedules page
+    navigate(`/transport-management/edit-schedule/${id}`);
   };
 
   const handleDelete = (id) => {
     axios
-      .delete(`http://localhost:3000/admin-portal/transport-management/${id}`, {
+      .delete(`http://localhost:3000/admin-portal/transport-management/schedules/${id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
           'Content-Type': 'application/json'
@@ -192,7 +147,7 @@ const IncomeTable = () => {
 
         Swal.fire({
           title: 'Deleted!',
-          text: 'Income has been deleted.',
+          text: 'Schedule Record has been deleted.',
           icon: 'success',
           confirmButtonText: 'OK'
         });
@@ -222,13 +177,13 @@ const IncomeTable = () => {
             navigate('/home')
           );
         }
-        console.log(error);
-        Swal.fire({
-          title: 'Error',
-          text: 'Item could not be deleted.',
-          icon: 'error',
-          confirmButtonText: 'OK'
-        });
+        if (error.response.status === 400) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error!!!',
+            text: error.response.data.message
+          });
+        }
       });
   };
 
@@ -255,56 +210,55 @@ const IncomeTable = () => {
 
   useEffect(() => {
     if (searchText.trim() === '') {
-      setIncomes(rows);
+      setSchedules(rows);
     } else {
       let timeoutID = setTimeout(() => {
-        fetch('http://localhost:3000/admin-portal/transport-management/search/' + searchText, {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
-            'Content-Type': 'application/json'
+        fetch(
+          'http://localhost:3000/admin-portal/transport-management/schedules/search/' + searchText,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem('token')}`,
+              'Content-Type': 'application/json'
+            }
           }
-        })
+        )
           .then((response) => response.json())
           .then((data) => {
-            setIncomes(data);
+            setSchedules(data);
           })
           .catch((error) => {
-            console.error('Error fetching Incomes:', error);
+            if (error.response.status === 401) {
+              Swal.fire(
+                {
+                  icon: 'warning',
+                  title: 'Login Required',
+                  text: error.response.data.message
+                },
+                navigate('/')
+              );
+            }
+
+            if (error.response.status === 403) {
+              Swal.fire(
+                {
+                  icon: 'warning',
+                  title: 'Unauthorized',
+                  text: error.response.data.message
+                },
+                navigate('/home')
+              );
+            }
+            console.error('Error fetching schedules:', error);
           });
       }, 500);
       return () => {
         clearTimeout(timeoutID);
       };
     }
-  }, [incomes, searchText]);
-
-  //generate report
-  const generatepdf = async () => {
-    await axios
-      .post(`http://localhost:3000/admin-portal/transport-management/createpdf`, incomes, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
-          'Content-Type': 'application/json'
-        }
-      })
-      .then((response) => {
-        axios
-          .get('http://localhost:3000/admin-portal/transport-management/fetchpdf', {
-            responseType: 'blob',
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem('token')}`,
-              'Content-Type': 'application/json'
-            }
-          })
-          .then((res) => {
-            const pdfBlob = new Blob([res.data], { type: 'application/pdf' });
-            saveAs(pdfBlob, 'income-report.pdf');
-          });
-      });
-  };
+  }, [schedules, searchText]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <h1>Loading...</h1>;
   }
 
   return (
@@ -312,7 +266,7 @@ const IncomeTable = () => {
       <div className="grid grid-cols-2 gap-4">
         <div>
           <TextField
-            label="Search Income"
+            label="Search Schedule"
             value={searchText}
             onChange={handleSearch}
             sx={{ mb: 2 }}
@@ -327,27 +281,16 @@ const IncomeTable = () => {
               marginRight: '10px',
               borderRadius: '10px'
             }}>
-            <NavLink end to="/transport-management/add-income">
-              Add Income
+            <NavLink end to="/transport-management/add-schedule">
+              Add Schedule
             </NavLink>
-          </Button>
-          <Button
-            style={{
-              backgroundColor: '#4CAF50',
-              color: '#fff',
-              maxHeight: '50px',
-              borderRadius: '10px'
-            }}
-            className=""
-            onClick={generatepdf}>
-            Export Report
           </Button>
         </div>
       </div>
 
       <div style={{ height: 400, width: '100%' }}>
         <DataGrid
-          rows={searchText ? incomes : rows}
+          rows={schedules}
           columns={columns}
           pageSize={5}
           rowsPerPageOptions={[5]}
@@ -360,4 +303,4 @@ const IncomeTable = () => {
   );
 };
 
-export default IncomeTable;
+export default ScheduleTable;
