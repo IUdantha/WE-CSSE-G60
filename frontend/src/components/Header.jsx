@@ -9,7 +9,7 @@ const Header = () => {
   return (
     <HeaderContainer>
       <a className="logo" href="/">
-        <img className="h-16 pl-8 py-auto" src="../../../logo.png" alt="logo"></img>
+        <img className="h-20 pl-8 py-auto" src="../../../logo.png" alt="logo"></img>
       </a>
     </HeaderContainer>
   );
