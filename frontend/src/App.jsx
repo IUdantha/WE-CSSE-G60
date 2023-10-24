@@ -1,65 +1,37 @@
-import './App.css';
-import Home from './pages/Home';
+// Import necessary dependencies and components
+import './App.css'; // Import styles for the app
+import Home from './pages/Home'; // Import the Home component
 
-import ProductManagement from './pages/ProductManagement/ProductManagement';
-import ProductMainPage from './pages/ProductionManagement/Home/ProductMainPage';
-import ProductUpdatePage from './pages/ProductManagementNew/Update/ProductUpdatePage';
-import SingleProduct from './pages/ProductionManagement/Home/Components/SingleProduct';
-import UpdateProductDetails from './pages/ProductionManagement/Home/Components/UpdateProductDetails';
-import UpdateProductionDetails from './pages/ProductManagement/UpdateProductionDetails';
-
-import AddStaff from './pages/StaffManagement/AddStaff';
-import UpdateStaff from './pages/StaffManagement/UpdateStaff';
-import StaffManagement from './pages/StaffManagement/StaffManagement';
-import Updatepackingitem from './pages/StockManagement/PackingItem/Updatepackingitem';
-import AddFirewood from './pages/StockManagement/Firewood/AddFirewoodMAnagement';
-import AddSupplier from './pages/StockManagement/AddSupplierManagement';
-import Updatesup from './pages/StockManagement/UpdatesupplierManagement';
-import Viewsupplier from './pages/StockManagement/ViewsupplierManagement';
-import Updatefire from './pages/StockManagement/Firewood/UpdatefirewoodManagement';
-import Viewfirewood from './pages/StockManagement/Firewood/ViewfirewoodManagement';
-import Addpacking from './pages/StockManagement/PackingItem/AddpackingManagement';
-import Viewpacking from './pages/StockManagement/PackingItem/ViewpackingManagement';
-import SalesManagement from './pages/SalesManagement/SalesManagement';
-import MachineManagement from './pages/MachineManagement/Machine/MachineManagement.jsx';
-import GeneratorManagement from './pages/MachineManagement/Generators/GeneratorManagement.jsx';
-import UpdateMachine from './pages/MachineManagement/Machine/UpdateManagement.jsx';
-import UpdateGenerator from './pages/MachineManagement/Generators/UpdateManagement.jsx';
-import AddManagement from './pages/MachineManagement/Machine/AddManagement';
-import AddManagementGen from './pages/MachineManagement/Generators/AddManagement';
-import ViewManagement from './pages/MachineManagement/Machine/ViewManagement';
-import ViewManagementgen from './pages/MachineManagement/Generators/ViewManagement';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import AddQuotation from './pages/SalesManagement/AddQuotation';
-import ProductDetails from './pages/SalesManagement/ProductDetails';
-import VehicleCategoryAdd from './pages/vehicleManagement/VehicleCategoryAdd';
-import ViewVehicleCategory from './pages/vehicleManagement/ViewVehicleCategory';
-import EditVehicleCategory from './pages/vehicleManagement/EditVehicleCategory';
-import AddVehicle from './pages/vehicleManagement/AddVehicle';
-import ViewVehiclePage from './pages/vehicleManagement/ViewVehiclePage';
-import EditVehiclePage from './pages/vehicleManagement/EditVehiclePage';
 import { ThemeProvider } from '@mui/material';
-import UpdatePage from './pages/SalesManagement/UpdateSales/UpdatePage';
 import { theme } from './theme';
-import AddSalary from './pages/SalaryManagement/AddSalary';
-import EditSalaryPage from './pages/SalaryManagement/EditSalaryPage';
-import ViewSalaryPage from './pages/SalaryManagement/ViewSalaryPage';
-import AddIncrement from './pages/SalaryManagement/AddIncrement';
-import EditIncrement from './pages/SalaryManagement/EditIncrement';
-import ViewIncrement from './pages/SalaryManagement/ViewIncrement';
+import AddIncome from './pages/TransportManagement/AddIncome';
+import EditIncomePage from './pages/TransportManagement/EditIncomePage';
+import ViewIncomePage from './pages/TransportManagement/ViewIncomePage';
+import AddInspector from './pages/TransportManagement/AddInspector';
+import EditInspector from './pages/TransportManagement/EditInspector';
+import ViewInspector from './pages/TransportManagement/ViewInspector';
+import AddSchedule from './pages/TransportManagement/AddSchedule';
+import EditSchedule from './pages/TransportManagement/EditSchedule';
+import ViewSchedule from './pages/TransportManagement/ViewSchedule';
+import AddRoute from './pages/TransportManagement/AddRoute';
+import EditRoute from './pages/TransportManagement/EditRoute';
+import ViewRoute from './pages/TransportManagement/ViewRoute';
 
-import CropsManagement from './pages/CropsManagement/CropsManagement';
-import Addcrops from './pages/CropsManagement/addcManagement';
-import Login from './pages/Login/Login';
-import Updatecrops from './pages/CropsManagement/UpdateCManagement';
-import SuppliercManagement from './pages/CropsManagement/supplierc/SuppliercManagement';
-import AddSupplierc from './pages/CropsManagement/supplierc/addSupplierc';
-import UpdateSupplierssManagement from './pages/CropsManagement/supplierc/UpdateSManagement';
+import Login from './pages/Login/Login'; // Import the Login component
+
+// Define the main App component`
 function App() {
   return (
     <ThemeProvider theme={theme}>
+      {' '}
+      {/* Apply the custom theme to the app */}
       <Router>
+        {' '}
+        {/* Set up the routing with BrowserRouter */}
         <Routes>
+          {' '}
+          {/* Define the routes for the app */}
           <Route
             path="/"
             element={
@@ -67,115 +39,44 @@ function App() {
                 <Login />
               </LoggedIn>
             }
-          />
-          <Route path="/" element={<Home />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/staff-management" element={<StaffManagement />} />
-          <Route path="/staff-management/add-staff-member" element={<AddStaff />} />
-          <Route path="staff-management/update-member" element={<UpdateStaff />} />
-
-          {/* Product Management */}
-          <Route path="/product-management" element={<ProductMainPage />} />
-          {/* NewLinks Start */}
-          <Route path="/product-management/products" element={<ProductMainPage />} />
-          <Route path="/product-management/single-product/:id" element={<SingleProduct />} />
-          <Route
-            path="/product-management/single-product/edit/:id"
-            element={<UpdateProductDetails />}
-          />
-          {/* New links end */}
-          <Route
-            path="/product-management/products/productions/:id"
-            element={<ProductUpdatePage />}
-          />
-          <Route path="/product-management/production-records" element={<ProductManagement />} />
-          <Route
-            path="/product-management/production-records/:id"
-            element={<UpdateProductionDetails />}
-          />
-          {/* end product Management */}
-
-          <Route path="/sales-management" element={<SalesManagement />} />
-          <Route path="/sales-management/add-quotation" element={<AddQuotation />} />
-          <Route path="/sales-management/product-details" element={<ProductDetails />} />
-          <Route path="/sales-management/sales/:id" element={<UpdatePage />} />
-
-          <Route path="/stock-management" element={<Viewsupplier />} />
-          <Route path="/stock-management/supplier/:id" element={<Updatesup />} />
-          <Route path="/stock-management/add-supplier" element={<AddSupplier />} />
-          <Route path="/stock-management/all-suppliers" element={<Viewsupplier />} />
-          <Route path="/stock-management/all-suppliers/supplier/:id" element={<Updatesup />} />
-
-          <Route path="/stock-management/add-firewood-stocks" element={<AddFirewood />} />
-          <Route path="/stock-management/firewood" element={<Viewfirewood />} />
-          <Route path="/stock-management/all-firewood-stocks" element={<Viewfirewood />} />
-          <Route path="/stock-management/firewood/:id" element={<Updatefire />} />
-          <Route path="/stock-management/all-firewood-stocks/:id" element={<Updatefire />} />
-
-          <Route path="/stock-management/packing" element={<Viewpacking />} />
-          <Route path="/stock-management/packing/:id" element={<Updatepackingitem />} />
-          <Route path="/stock-management/add-packing-materials" element={<Addpacking />}></Route>
-          <Route path="/stock-management/all-packing-materials" element={<Viewpacking />} />
-
-          <Route path="/machine-management/add-machine" element={<AddManagement />} />
-          <Route path="/machine-management" element={<MachineManagement />} />
-          <Route path="/machine-management/machines/:id" element={<UpdateMachine />} />
-          <Route path="/machine-management/all-machines" element={<ViewManagement />} />
-          <Route path="/machine-management/all-machines/machines/:id" element={<UpdateMachine />} />
-          {/* 
-          <Route path="generator-management/add-generator" element={<AddManagementGen />} />
-          <Route path="/generator-management" element={<GeneratorManagement />} />
-          <Route path="/generator-management/generators/:id" element={<UpdateGenerator />} />
-          <Route path="/generator-management/all-generators" element={<ViewManagementgen />} />
-          <Route
-            path="/generator-management/all-generators/generators/:id"
-            element={<UpdateGenerator />}
-          />
- */}
-          {/* Vehicle Management */}
-          <Route path="/vehicle-management" element={<ViewVehiclePage />} />
-          <Route path="/vehicle-management/add-vehicle" element={<AddVehicle />} />
-          <Route path="/vehicle-management/add-vehicle-category" element={<VehicleCategoryAdd />} />
-          <Route path="/vehicle-management/category" element={<ViewVehicleCategory />} />
-          <Route path="/vehicle-management/edit-category/:id" element={<EditVehicleCategory />} />
-          <Route path="/vehicle-management/:id" element={<EditVehiclePage />} />
-          {/* end vehicle Management */}
-
-          <Route path="machine-management/add-generator" element={<AddManagementGen />} />
-          <Route path="/machine-management" element={<GeneratorManagement />} />
-          <Route path="/machine-management/generators/:id" element={<UpdateGenerator />} />
-          <Route path="/machine-management/all-generators" element={<ViewManagementgen />} />
-          <Route
-            path="/machine-management/all-generators/generators/:id"
-            element={<UpdateGenerator />}
-          />
-
-          <Route path="/crops-management" element={<CropsManagement />} exact />
-          <Route path="/crops-management/add-crops" element={<Addcrops />}></Route>
-
-          {/* Salary Management */}
-          <Route path="/salary-management" element={<ViewSalaryPage />} />
-          <Route path="/salary-management/add-salary" element={<AddSalary />} />
-          <Route path="/salary-management/add-increment" element={<AddIncrement />} />
-          <Route path="/salary-management/increment" element={<ViewIncrement />} />
-          <Route path="/salary-management/edit-increment/:id" element={<EditIncrement />} />
-          <Route path="/salary-management/edit-salary/:id" element={<EditSalaryPage />} />
-          <Route path="/crops-management/crops/:id" element={<Updatecrops />} exact />
-
-          <Route path="/supplierc-management" element={<SuppliercManagement />} exact />
-          <Route path="/supplierc-management/add-supplier" element={<AddSupplierc />}></Route>
-          <Route
-            path="/supplierc-management/supplierc/:id"
-            element={<UpdateSupplierssManagement />}
-            exact
-          />
+          />{' '}
+          {/* Display the Login component for the root path if a user is not logged in */}
+          <Route path="/" element={<Home />} /> {/* Display the Home component for the root path */}
+          <Route path="/home" element={<Home />} />{' '}
+          {/* Display the Home component for the '/home' path */}
+          {/* --------------------------------------------------------- */}
+          {/* Transport Management */}
+          <Route path="/transport-management" element={<ViewIncomePage />} />{' '}
+          {/* Display the ViewIncomePage component for the '/transport-management' path */}
+          <Route path="/transport-management/add-income" element={<AddIncome />} />{' '}
+          {/* Display the AddIncome component for the '/transport-management/add-income' path */}
+          <Route path="/transport-management/edit-income/:id" element={<EditIncomePage />} />{' '}
+          {/* Display the EditIncomePage component for the '/transport-management/edit-income/:id' path */}
+          <Route path="/transport-management/inspector" element={<ViewInspector />} />{' '}
+          {/* Display the ViewInspector component for the '/transport-management/inspector' path */}
+          <Route path="/transport-management/add-inspector" element={<AddInspector />} />{' '}
+          {/* Display the AddInspector component for the '/transport-management/add-inspector' path */}
+          <Route path="/transport-management/edit-inspector/:id" element={<EditInspector />} />{' '}
+          {/* Display the EditInspector component for the '/transport-management/edit-inspector/:id' path */}
+          <Route path="/transport-management/schedule" element={<ViewSchedule />} />{' '}
+          {/* Display the ViewSchedule component for the '/transport-management/schedule' path */}
+          <Route path="/transport-management/add-schedule" element={<AddSchedule />} />{' '}
+          {/* Display the AddSchedule component for the '/transport-management/add-schedule' path */}
+          <Route path="/transport-management/edit-schedule/:id" element={<EditSchedule />} />{' '}
+          {/* Display the EditSchedule component for the '/transport-management/edit-schedule/:id' path */}
+          <Route path="/transport-management/route" element={<ViewRoute />} />{' '}
+          {/* Display the ViewRoute component for the '/transport-management/route' path */}
+          <Route path="/transport-management/add-route" element={<AddRoute />} />{' '}
+          {/* Display the AddRoute component for the '/transport-management/add-route' path */}
+          <Route path="/transport-management/edit-route/:id" element={<EditRoute />} />{' '}
+          {/* Display the EditRoute component for the '/transport-management/edit-route/:id' path */}
         </Routes>
       </Router>
     </ThemeProvider>
   );
 }
 
-export default App;
+export default App; // Export the App component as the default export
 
 // const LoggedOut = ({ children }) => {
 //   if (localStorage.getItem('token')) {
@@ -185,10 +86,11 @@ export default App;
 //   }
 // };
 
+// Define a component to handle the case when a user is logged in
 export const LoggedIn = ({ children }) => {
   if (localStorage.getItem('token')) {
-    return <Navigate to="/home" />;
+    return <Navigate to="/home" />; // Redirect to the Home page if the user is logged in
   } else {
-    return children;
+    return children; // Render the children components if the user is not logged in
   }
 };

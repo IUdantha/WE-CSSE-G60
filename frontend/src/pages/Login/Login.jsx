@@ -13,13 +13,17 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const loginResponse = await axios.post('http://localhost:3000/admin-portal/login', {
-        email: email,
-        password: password
-      });
-      localStorage.setItem('token', loginResponse.data.token);
-      localStorage.setItem('role', loginResponse.data.role);
-      setRole(loginResponse.data.role);
+      // const loginResponse = await axios.post('http://localhost:3000/admin-portal/login', {
+      //   email: email,
+      //   password: password
+      // });
+      // localStorage.setItem('token', loginResponse.data.token);
+      // localStorage.setItem('role', loginResponse.data.role);
+
+      localStorage.setItem('token', '123123');
+      localStorage.setItem('role', 'transportManager');
+
+      setRole('transportManager');
     } catch (error) {
       Swal.fire({
         icon: 'error',
@@ -34,26 +38,8 @@ const Login = () => {
       case 'staffManager':
         navigate('/staff-management');
         break;
-      case 'productManager':
-        navigate('/product-management');
-        break;
-      case 'stockManager':
-        navigate('/stock-management');
-        break;
-      case 'vehicleOfficer':
-        navigate('/vehicle-management');
-        break;
-      case 'salesManager':
-        navigate('/sales-management');
-        break;
-      case 'cropManager':
-        navigate('/crops-management');
-        break;
-      case 'technicalManager':
-        navigate('/machine-management');
-        break;
-      case 'payrollManager':
-        navigate('/salary-management');
+      case 'transportManager':
+        navigate('/transport-management');
         break;
       case 'sysAdmin':
         navigate('/home');
