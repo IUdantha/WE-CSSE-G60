@@ -17,7 +17,7 @@ async function getRoutes(req, res) {
 async function getRoute(req, res) {
   try {
     const route = await Route.findById(req.params.id);
-    res.json(routes);
+    res.json(route);
   } catch (error) {
     res.status(500).json({message: error.message});
   }
@@ -119,14 +119,12 @@ const createPdf = (req, res) => {
 
   console.log(routeId);
 
-  pdf
-    .create(pdfTemplate(req.body), {})
-    .toFile("route-report.pdf", (err) => {
-      if (err) {
-        console.log(err);
-      }
-      res.send("PDF generated");
-    });
+  pdf.create(pdfTemplate(req.body), {}).toFile("route-report.pdf", (err) => {
+    if (err) {
+      console.log(err);
+    }
+    res.send("PDF generated");
+  });
 };
 
 const fetchPdf = (req, res) => {

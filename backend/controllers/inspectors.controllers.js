@@ -5,7 +5,6 @@ const path = require("path");
 
 // function to get all inspectors
 async function getInspectors(req, res) {
-  console.log("Hello I am here");
   try {
     const inspectors = await Inspector.find();
     res.json(inspectors);

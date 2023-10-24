@@ -83,7 +83,7 @@ function EditInspectorForm() {
 
   const formik = useFormik({
     initialValues: {
-      inspectorId: inspectors.inspectorID,
+      inspectorId: inspectors.inspectorId,
       name: inspectors.inspectorName,
       contactNumber: inspectors.inspectorContact,
       busId: inspectors.busID,
@@ -101,7 +101,7 @@ function EditInspectorForm() {
           const res = await axios.patch(
             'http://localhost:3000/admin-portal/transport-management/inspectors/' + id,
             {
-              inspectorID: values.inspectorId,
+              inspectorId: values.inspectorId,
               inspectorName: values.name,
               inspectorContact: values.contactNumber,
               busID: values.busId,
@@ -274,9 +274,7 @@ function EditInspectorForm() {
         <Grid item xs={12} sm={6}>
           <div>
             {formik.touched.salStatus && formik.errors.salStatus ? (
-              <p className="mt-1 mb-2 text-sm italic text-red-500">
-                {formik.errors.salStatus}
-              </p>
+              <p className="mt-1 mb-2 text-sm italic text-red-500">{formik.errors.salStatus}</p>
             ) : null}
           </div>
           <TextField
@@ -300,7 +298,6 @@ function EditInspectorForm() {
             </MenuItem>
           </TextField>
         </Grid>
-
 
         <Grid item xs={12}>
           <div className="flex justify-end">

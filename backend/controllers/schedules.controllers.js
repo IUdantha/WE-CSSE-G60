@@ -17,7 +17,7 @@ async function getSchedules(req, res) {
 async function getSchedule(req, res) {
   try {
     const schedule = await Schedule.findById(req.params.id);
-    res.json(schedules);
+    res.json(schedule);
   } catch (error) {
     res.status(500).json({message: error.message});
   }
@@ -119,14 +119,12 @@ const createPdf = (req, res) => {
 
   console.log(scheduleBusId);
 
-  pdf
-    .create(pdfTemplate(req.body), {})
-    .toFile("schedule-report.pdf", (err) => {
-      if (err) {
-        console.log(err);
-      }
-      res.send("PDF generated");
-    });
+  pdf.create(pdfTemplate(req.body), {}).toFile("schedule-report.pdf", (err) => {
+    if (err) {
+      console.log(err);
+    }
+    res.send("PDF generated");
+  });
 };
 
 const fetchPdf = (req, res) => {
