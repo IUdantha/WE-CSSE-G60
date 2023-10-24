@@ -4,7 +4,6 @@ const connectDB = require("./config/DBConnect.js");
 
 const {
   auth,
-  staffManagement,
   transportManagement,
 } = require("./middlewares/auth.roles.js");
 
@@ -28,15 +27,6 @@ app.use(express.json());
 
 // login Routes
 app.use("/admin-portal/login", loginRoute);
-
-// // Staff Management Route
-// app.use(
-//   "/admin-portal/staff-management",
-//   auth,
-//   staffManagement,
-//   staffManagerRoutes
-// );
-
 
 app.use("/admin-portal/transport-management/routes", routeRoutes);
 app.use("/admin-portal/transport-management/schedules", schedulesRoutes);
