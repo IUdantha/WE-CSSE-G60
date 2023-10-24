@@ -107,18 +107,6 @@ async function searchInspector(req, res) {
 
 // generate report
 const createPdf = (req, res) => {
-  const {
-    inspectorId,
-    inspectorName,
-    inspectorContact,
-    busID,
-    busRoute,
-    inspectorSalary,
-    inspectorStatus,
-  } = req.body;
-
-  console.log(inspectorId);
-
   pdf
     .create(pdfTemplate(req.body), {})
     .toFile("inspector-report.pdf", (err) => {

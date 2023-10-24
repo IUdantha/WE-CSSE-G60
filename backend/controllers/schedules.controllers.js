@@ -107,18 +107,6 @@ async function searchSchedule(req, res) {
 
 // generate report
 const createPdf = (req, res) => {
-  const {
-    scheduleBusId,
-    scheduleRouteId,
-    scheduleDriver,
-    scheduleInspector,
-    scheduleDepart,
-    scheduleArrive,
-    scheduleLoad,
-  } = req.body;
-
-  console.log(scheduleBusId);
-
   pdf.create(pdfTemplate(req.body), {}).toFile("schedule-report.pdf", (err) => {
     if (err) {
       console.log(err);

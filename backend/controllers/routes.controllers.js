@@ -107,18 +107,6 @@ async function searchRoute(req, res) {
 
 // generate report
 const createPdf = (req, res) => {
-  const {
-    routeId,
-    routeBusId,
-    routeInspector,
-    routeDepart,
-    routeArrive,
-    routeDistance,
-    routeTime,
-  } = req.body;
-
-  console.log(routeId);
-
   pdf.create(pdfTemplate(req.body), {}).toFile("route-report.pdf", (err) => {
     if (err) {
       console.log(err);

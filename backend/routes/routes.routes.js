@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 const RoutesController = require("../controllers/routes.controllers");
 
-router.get("/search/:scheduleBusId", RoutesController.searchRoute);
+router.get("/search/:routeId", RoutesController.searchRoute);
 router.get("/", RoutesController.getRoutes);
 router.post("/", RoutesController.storeRoute);
 router.get("/:id", RoutesController.getRoute);
