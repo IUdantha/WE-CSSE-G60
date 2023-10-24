@@ -37,8 +37,9 @@ app.use("/admin-portal/login", loginRoute);
 
 // // Product Management Route
 // app.use("/admin-portal/product-management", productManagerRoutes);
-app.use("/admin-portal/transport-management", incomesRoutes);
 app.use("/admin-portal/transport-management/inspectors", inspectorsRoutes);
+app.use("/admin-portal/transport-management", incomesRoutes);
+
 
 connectDB()
   .then(() => {
