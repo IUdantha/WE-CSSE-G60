@@ -196,11 +196,11 @@ module.exports = (incomes) => {
   
          ${incomes.map((income) => {
            return `   <tr>
-                <td class="service">${income.routeId}</td>
-                <td class="desc">${income.busId}</td>
-                <td class="desc">${income.income}</td>
-                <td class="desc">${income.expenses}</td>
-                <td class="desc">${income.profit}</td>
+                <td class="service">${income.incomeRouteID}</td>
+                <td class="desc">${income.incomeBusID}</td>
+                <td class="desc">${income.incomeIncome}</td>
+                <td class="desc">${income.incomeExpenses}</td>
+                <td class="desc">${income.incomeProfit}</td>
   
                 </tr> `;
          })}

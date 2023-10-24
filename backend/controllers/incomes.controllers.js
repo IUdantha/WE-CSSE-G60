@@ -107,18 +107,6 @@ async function searchIncome(req, res) {
 
 // generate report
 const createPdf = (req, res) => {
-  const {
-    incomeRouteID,
-    incomeBusID,
-    incomeLoad,
-    incomeDate,
-    incomeIncome,
-    incomeExpenses,
-    incomeProfit,
-  } = req.body;
-
-  console.log(incomeRouteID);
-
   pdf.create(pdfTemplate(req.body), {}).toFile("income-report.pdf", (err) => {
     if (err) {
       console.log(err);

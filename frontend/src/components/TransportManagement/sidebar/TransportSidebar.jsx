@@ -42,7 +42,7 @@ const TransportSidebar = () => {
         <div className="flex flex-row items-center justify-center gap-2 px-4 py-4 m-4 text-white bg-primary rounded-xl">
           <ion-icon name="apps"></ion-icon>
           <p>
-            <strong>Manager Department</strong>
+            <strong>Transport Department</strong>
           </p>
         </div>
       </SidebarHeading>
