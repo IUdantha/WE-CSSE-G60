@@ -15,6 +15,7 @@ const loginRoute = require("./routes/login.routes.js");
 const incomesRoutes = require("./routes/incomes.routes.js");
 const inspectorsRoutes = require("./routes/inspectors.routes.js");
 const schedulesRoutes = require("./routes/schedules.routes.js");
+const routeRoutes = require("./routes/routes.routes.js");
 
 const app = express();
 
@@ -37,7 +38,7 @@ app.use("/admin-portal/login", loginRoute);
 // );
 
 
-// app.use("/admin-portal/product-management", productManagerRoutes);
+app.use("/admin-portal/transport-management/routes", routeRoutes);
 app.use("/admin-portal/transport-management/schedules", schedulesRoutes);
 app.use("/admin-portal/transport-management/inspectors", inspectorsRoutes);
 app.use("/admin-portal/transport-management", incomesRoutes);

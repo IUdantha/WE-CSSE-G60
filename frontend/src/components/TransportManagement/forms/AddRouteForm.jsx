@@ -104,7 +104,7 @@ const AddRouteForm = () => {
         });
 
         // Redirect to income management page
-        navigate('/transport-management/income');
+        navigate('/transport-management/route');
         // Reset the form
         formik.resetForm();
       } catch (error) {
