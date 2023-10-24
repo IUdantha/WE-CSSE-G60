@@ -26,7 +26,7 @@ const stockManagerRoutes = require("./routes/stockManager.routes");
 const salaryRoutes = require("./routes/payrollManager.routes");
 const salaryIncrementRoutes = require("./routes/salaryIncrement.routes");
 const productManagerRoutes = require("./routes/productManager.routes.js");
-const inspectorsRoutes = require("./routes/inspectors.routes.js");
+const incomesRoutes = require("./routes/incomes.routes.js");
 const productReportRoutes = require("./routes/productRecords.routes.js");
 
 // crops
@@ -56,7 +56,7 @@ app.use("/admin-portal/login", loginRoute);
 
 // // Product Management Route
 app.use("/admin-portal/product-management", productManagerRoutes);
-app.use("/admin-portal/transport-management", inspectorsRoutes);
+app.use("/admin-portal/transport-management", incomesRoutes);
 // app.use("/admin-portal/production-management", productReportRoutes);
 
 // // Sales Management Route

@@ -1,5 +1,5 @@
 const Income = require("../models/income.models");
-const pdfTemplate = require("../models/salesreport.models");
+const pdfTemplate = require("../models/incomereport.models");
 const pdf = require("html-pdf");
 const path = require("path");
 
@@ -97,7 +97,19 @@ async function searchIncome(req, res) {
 
 // generate report
 const createPdf = (req, res) => {
-  pdf.create(pdfTemplate(req.body), {}).toFile("incomeReport.pdf", (err) => {
+  const {
+    incomeRouteID,
+    incomeBusID,
+    incomeLoad,
+    incomeDate,
+    incomeIncome,
+    incomeExpenses,
+    incomeProfit,
+  } = req.body;
+
+  console.log(incomeRouteID);
+
+  pdf.create(pdfTemplate(req.body), {}).toFile("income-report.pdf", (err) => {
     if (err) {
       console.log(err);
     }
@@ -106,7 +118,7 @@ const createPdf = (req, res) => {
 };
 
 const fetchPdf = (req, res) => {
-  res.sendFile(path.join(__dirname, "../salesreport.pdf"));
+  res.sendFile(path.join(__dirname, "../income-report.pdf"));
 };
 
 // function to update a income
