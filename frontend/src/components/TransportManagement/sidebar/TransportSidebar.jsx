@@ -50,56 +50,28 @@ const TransportSidebar = () => {
         <SidebarOption>
           <div className="button m-4 px-4 py-2 active:text-white bg-white text-primary flex flex-row gap-2 items-center rounded-xl pl-[40px]">
             <StyledNavLink end to="/transport-management">
-              View Incomes
-            </StyledNavLink>
-          </div>
-        </SidebarOption>
-        <SidebarOption>
-          <div className="button m-4 px-4 py-2 active:text-white bg-white text-primary flex flex-row gap-2 items-center rounded-xl pl-[40px]">
-            <StyledNavLink end to="/transport-management/add-income">
-              Add Incomes
+              Daily Income
             </StyledNavLink>
           </div>
         </SidebarOption>
         <SidebarOption>
           <div className="button m-4 px-4 py-2 active:text-white bg-white text-primary flex flex-row gap-2 items-center rounded-xl pl-[40px]">
             <StyledNavLink end to="/transport-management/inspector">
-              View Inspectors
-            </StyledNavLink>
-          </div>
-        </SidebarOption>
-        <SidebarOption>
-          <div className="button m-4 px-4 py-2 active:text-white bg-white text-primary flex flex-row gap-2 items-center rounded-xl pl-[40px]">
-            <StyledNavLink end to="/transport-management/add-inspector">
-              Add Inspectors
+              Ticket Inspectors
             </StyledNavLink>
           </div>
         </SidebarOption>
         <SidebarOption>
           <div className="button m-4 px-4 py-2 active:text-white bg-white text-primary flex flex-row gap-2 items-center rounded-xl pl-[40px]">
             <StyledNavLink end to="/transport-management/schedule">
-              View Schedules
-            </StyledNavLink>
-          </div>
-        </SidebarOption>
-        <SidebarOption>
-          <div className="button m-4 px-4 py-2 active:text-white bg-white text-primary flex flex-row gap-2 items-center rounded-xl pl-[40px]">
-            <StyledNavLink end to="/transport-management/add-schedule">
-              Add Schedule
+              Bus Schedules
             </StyledNavLink>
           </div>
         </SidebarOption>
         <SidebarOption>
           <div className="button m-4 px-4 py-2 active:text-white bg-white text-primary flex flex-row gap-2 items-center rounded-xl pl-[40px]">
             <StyledNavLink end to="/transport-management/route">
-              View Bus Routes
-            </StyledNavLink>
-          </div>
-        </SidebarOption>
-        <SidebarOption>
-          <div className="button m-4 px-4 py-2 active:text-white bg-white text-primary flex flex-row gap-2 items-center rounded-xl pl-[40px]">
-            <StyledNavLink end to="/transport-management/add-route">
-              Add Bus Route
+              Bus Routes
             </StyledNavLink>
           </div>
         </SidebarOption>
