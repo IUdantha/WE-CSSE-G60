@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import Swal from 'sweetalert2';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import Swal from 'sweetalert2';
 import axios from 'axios';
 import { DataGrid } from '@mui/x-data-grid';
 import { Button, TextField } from '@mui/material';
@@ -43,7 +43,7 @@ const InspectorTable = () => {
   });
 
   const columns = [
-    { field: 'inspectorID', headerName: 'Inspector ID', width: 110 },
+    { field: 'inspectorId', headerName: 'Inspector ID', width: 110 },
     { field: 'inspectorName', headerName: 'Name', width: 170 },
     { field: 'inspectorContact', headerName: 'Contact Number', width: 150 },
     { field: 'busID', headerName: 'Bus ID', width: 170 },

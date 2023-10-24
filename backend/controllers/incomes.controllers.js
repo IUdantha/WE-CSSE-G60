@@ -1,4 +1,4 @@
-const Income = require("../models/income.models");
+const Income = require("../models/incomes.models");
 const pdfTemplate = require("../models/incomereport.models");
 const pdf = require("html-pdf");
 const path = require("path");
@@ -8,6 +8,16 @@ async function getIncomes(req, res) {
   try {
     const incomes = await Income.find();
     res.json(incomes);
+  } catch (error) {
+    res.status(500).json({message: error.message});
+  }
+}
+
+// function to get a single income
+async function getIncome(req, res) {
+  try {
+    const income = await Income.findById(req.params.id);
+    res.json(income);
   } catch (error) {
     res.status(500).json({message: error.message});
   }
@@ -183,6 +193,7 @@ module.exports = {
   deleteIncome,
   searchIncome,
   updateIncome,
+  getIncome,
   createPdf,
   fetchPdf,
 };

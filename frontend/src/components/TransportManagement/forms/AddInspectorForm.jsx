@@ -9,12 +9,12 @@ const API_URL = 'http://localhost:3000/admin-portal/transport-management/inspect
 
 const initialValues = {
   inspectorId: '',
-  name: '',
-  contactNumber: '',
-  busId: '',
-  route: '',
-  salary: '',
-  salStatus: ''
+  inspectorName: '',
+  inspectorContact: '',
+  busID: '',
+  busRoute: '',
+  inspectorSalary: '',
+  inspectorStatus: ''
 };
 
 const AddInspectorForm = () => {
@@ -82,13 +82,13 @@ const AddInspectorForm = () => {
         const response = await axios.post(
           API_URL,
           {
-              inspectorID: values.inspectorId,
-              inspectorName: values.name,
-              inspectorContact: values.contactNumber,
-              busID: values.busId,
-              busRoute: values.route,
-              inspectorSalary: values.salary,
-              inspectorStatus: values.salStatus
+            inspectorId: values.inspectorId,
+            inspectorName: values.name,
+            inspectorContact: values.contactNumber,
+            busID: values.busId,
+            busRoute: values.route,
+            inspectorSalary: values.salary,
+            inspectorStatus: values.salStatus
           },
           {
             headers: {
@@ -104,7 +104,7 @@ const AddInspectorForm = () => {
         });
 
         // Redirect to income management page
-        navigate('/transport-management/income');
+        navigate('/transport-management/inspector');
         // Reset the form
         formik.resetForm();
       } catch (error) {
@@ -250,13 +250,11 @@ const AddInspectorForm = () => {
             error={formik.touched.salary && Boolean(formik.errors.salary)}
           />
         </Grid>
-        
+
         <Grid item xs={12} sm={6}>
           <div>
             {formik.touched.salStatus && formik.errors.salStatus ? (
-              <p className="mt-1 mb-2 text-sm italic text-red-500">
-                {formik.errors.salStatus}
-              </p>
+              <p className="mt-1 mb-2 text-sm italic text-red-500">{formik.errors.salStatus}</p>
             ) : null}
           </div>
           <TextField

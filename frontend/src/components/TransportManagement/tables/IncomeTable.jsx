@@ -14,10 +14,8 @@ let rows = [];
 
 const IncomeTable = () => {
   const [incomes, setIncomes] = useState([]);
-  const [inspectors, setInspectors] = useState([]);
   const [searchText, setSearchText] = useState('');
   const [loading, setLoading] = useState(false);
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -92,20 +90,17 @@ const IncomeTable = () => {
     setLoading(false);
   };
 
-  const fetchInspectors = async () => {
+  const fetchIncome = async () => {
     setLoading(true);
 
     try {
-      const response = await axios.get(
-        'http://localhost:3000/admin-portal/transport-management/inspector',
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
-            'Content-Type': 'application/json'
-          }
+      const response = await axios.get('http://localhost:3000/admin-portal/transport-management/', {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+          'Content-Type': 'application/json'
         }
-      );
-      setInspectors(response.data);
+      });
+      setIncomes(response.data);
     } catch (error) {
       if (error.response.status === 401) {
         Swal.fire(
@@ -171,7 +166,7 @@ const IncomeTable = () => {
       });
     setLoading(false);
     fetchData();
-    fetchInspectors();
+    fetchIncome();
   }, []);
 
   const handleUpdate = (id) => {

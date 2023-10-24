@@ -6,7 +6,7 @@ const IncomeController = require("../controllers/incomes.controllers");
 router.get("/search/:incomeRouteID", IncomeController.searchIncome);
 router.get("/", IncomeController.getIncomes);
 router.post("/", IncomeController.storeIncome);
-// router.get("/:id", ProductController.getProduct);
+router.get("/:id", IncomeController.getIncome);
 router.patch("/:id", IncomeController.updateIncome);
 router.delete("/:id", IncomeController.deleteIncome);
 router.post("/createpdf", IncomeController.createPdf);
