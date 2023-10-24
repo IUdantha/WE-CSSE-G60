@@ -13,13 +13,17 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const loginResponse = await axios.post('http://localhost:3000/admin-portal/login', {
-        email: email,
-        password: password
-      });
-      localStorage.setItem('token', loginResponse.data.token);
-      localStorage.setItem('role', loginResponse.data.role);
-      setRole(loginResponse.data.role);
+      // const loginResponse = await axios.post('http://localhost:3000/admin-portal/login', {
+      //   email: email,
+      //   password: password
+      // });
+      // localStorage.setItem('token', loginResponse.data.token);
+      // localStorage.setItem('role', loginResponse.data.role);
+
+      localStorage.setItem('token', '123123');
+      localStorage.setItem('role', 'transportManager');
+
+      setRole('transportManager');
     } catch (error) {
       Swal.fire({
         icon: 'error',

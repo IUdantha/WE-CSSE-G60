@@ -60,43 +60,43 @@ const AddIncomeForm = () => {
     }
   });
 
-  useEffect(() => {
-    const fetchInspectors = async () => {
-      try {
-        const response = await axios.get(API_URL + '/inspectors', {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
-            'Content-Type': 'application/json'
-          }
-        });
-        setInspectors(response.data);
-      } catch (error) {
-        if (error.response.status === 401) {
-          Swal.fire(
-            {
-              icon: 'warning',
-              title: 'Login Required',
-              text: error.response.data.message
-            },
-            navigate('/')
-          );
-        }
+  // useEffect(() => {
+  //   const fetchInspectors = async () => {
+  //     try {
+  //       const response = await axios.get(API_URL + '/inspectors', {
+  //         headers: {
+  //           Authorization: `Bearer ${localStorage.getItem('token')}`,
+  //           'Content-Type': 'application/json'
+  //         }
+  //       });
+  //       setInspectors(response.data);
+  //     } catch (error) {
+  //       if (error.response.status === 401) {
+  //         Swal.fire(
+  //           {
+  //             icon: 'warning',
+  //             title: 'Login Required',
+  //             text: error.response.data.message
+  //           },
+  //           navigate('/')
+  //         );
+  //       }
 
-        if (error.response.status === 403) {
-          Swal.fire(
-            {
-              icon: 'warning',
-              title: 'Unauthorized',
-              text: error.response.data.message
-            },
-            navigate('/home')
-          );
-        }
-        console.error(error);
-      }
-    };
-    fetchInspectors();
-  }, []);
+  //       if (error.response.status === 403) {
+  //         Swal.fire(
+  //           {
+  //             icon: 'warning',
+  //             title: 'Unauthorized',
+  //             text: error.response.data.message
+  //           },
+  //           navigate('/home')
+  //         );
+  //       }
+  //       console.error(error);
+  //     }
+  //   };
+  //   fetchInspectors();
+  // }, []);
 
   const formik = useFormik({
     initialValues,

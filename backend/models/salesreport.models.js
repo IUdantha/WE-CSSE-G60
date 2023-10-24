@@ -1,6 +1,6 @@
-module.exports = (quotation) => {
-  const today = new Date()
-  console.log(quotation)
+module.exports = (income) => {
+  const today = new Date();
+  console.log(income);
   // const total = 0
 
   return `
@@ -193,9 +193,8 @@ module.exports = (quotation) => {
       </thead>
       <tbody>
 
-     ${quotation.map((sal) => {
-        return (
-            `   <tr>
+     ${income.map((sal) => {
+       return `   <tr>
             <td class="service">${sal.name}</td>
             <td class="desc">${sal.email}</td>
             <td class="desc">${sal.date}</td>
@@ -208,8 +207,7 @@ module.exports = (quotation) => {
             <!-- <td class="unit"></td>
             <td class="unit">${sal.weight}</td> -->
             <td class="unit">${sal.status}</td>
-            </tr> `
-        )
+            </tr> `;
      })}  
       </tbody>
     </table>
@@ -220,5 +218,5 @@ module.exports = (quotation) => {
   </footer>
     </body>
     </html>
-    `
-}
+    `;
+};

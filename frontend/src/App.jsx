@@ -54,7 +54,6 @@ function App() {
           <Route path="staff-management/update-member" element={<UpdateStaff />} />
           {/* Display the UpdateStaff component for the '/staff-management/update-member' path */}
           {/* --------------------------------------------------------- */}
-          
           {/* Transport Management */}
           <Route path="/transport-management" element={<ViewIncomePage />} />{' '}
           {/* Display the ViewIncomePage component for the '/transport-management' path */}
@@ -62,28 +61,24 @@ function App() {
           {/* Display the AddIncome component for the '/transport-management/add-income' path */}
           <Route path="/transport-management/edit-income/:id" element={<EditIncomePage />} />{' '}
           {/* Display the EditIncomePage component for the '/transport-management/edit-income/:id' path */}
-
           <Route path="/transport-management/inspector" element={<ViewInspector />} />{' '}
           {/* Display the ViewInspector component for the '/transport-management/inspector' path */}
           <Route path="/transport-management/add-inspector" element={<AddInspector />} />{' '}
           {/* Display the AddInspector component for the '/transport-management/add-inspector' path */}
           <Route path="/transport-management/edit-inspector/:id" element={<EditInspector />} />{' '}
           {/* Display the EditInspector component for the '/transport-management/edit-inspector/:id' path */}
-
           <Route path="/transport-management/schedule" element={<ViewSchedule />} />{' '}
           {/* Display the ViewSchedule component for the '/transport-management/schedule' path */}
           <Route path="/transport-management/add-schedule" element={<AddSchedule />} />{' '}
           {/* Display the AddSchedule component for the '/transport-management/add-schedule' path */}
           <Route path="/transport-management/edit-schedule/:id" element={<EditSchedule />} />{' '}
           {/* Display the EditSchedule component for the '/transport-management/edit-schedule/:id' path */}
-
           <Route path="/transport-management/route" element={<ViewRoute />} />{' '}
           {/* Display the ViewRoute component for the '/transport-management/route' path */}
           <Route path="/transport-management/add-route" element={<AddRoute />} />{' '}
           {/* Display the AddRoute component for the '/transport-management/add-route' path */}
           <Route path="/transport-management/edit-route/:id" element={<EditRoute />} />{' '}
           {/* Display the EditRoute component for the '/transport-management/edit-route/:id' path */}
-
         </Routes>
       </Router>
     </ThemeProvider>
