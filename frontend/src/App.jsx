@@ -2,9 +2,6 @@
 import './App.css'; // Import styles for the app
 import Home from './pages/Home'; // Import the Home component
 
-import AddStaff from './pages/StaffManagement/AddStaff';
-import UpdateStaff from './pages/StaffManagement/UpdateStaff';
-import StaffManagement from './pages/StaffManagement/StaffManagement';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material';
 import { theme } from './theme';
@@ -47,12 +44,6 @@ function App() {
           <Route path="/" element={<Home />} /> {/* Display the Home component for the root path */}
           <Route path="/home" element={<Home />} />{' '}
           {/* Display the Home component for the '/home' path */}
-          <Route path="/staff-management" element={<StaffManagement />} />{' '}
-          {/* Display the StaffManagement component for the '/staff-management' path */}
-          <Route path="/staff-management/add-staff-member" element={<AddStaff />} />{' '}
-          {/* Display the AddStaff component for the '/staff-management/add-staff-member' path */}
-          <Route path="staff-management/update-member" element={<UpdateStaff />} />
-          {/* Display the UpdateStaff component for the '/staff-management/update-member' path */}
           {/* --------------------------------------------------------- */}
           {/* Transport Management */}
           <Route path="/transport-management" element={<ViewIncomePage />} />{' '}
