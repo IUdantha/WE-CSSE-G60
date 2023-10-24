@@ -104,7 +104,7 @@ const AddScheduleForm = () => {
         });
 
         // Redirect to income management page
-        navigate('/transport-management/income');
+        navigate('/transport-management/schedule');
         // Reset the form
         formik.resetForm();
       } catch (error) {
